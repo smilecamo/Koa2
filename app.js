@@ -1,14 +1,9 @@
-const Koa = require('koa')
-
-const app = new Koa()
-
-app.use((ctx,next)=>{
-  console.log('-----第一个---------');
-  next()
-})
-app.use((ctx,next)=>{
-  console.log('-----第二个---------');
-  next()
-})
-
-app.listen(3000)
+const Koa = require('koa');
+// 获取请求中body参数
+const parser = require('koa-bodyparser');
+// 工具类函数
+const InitManager = require('./core/init');
+const app = new Koa();
+InitManager.InitCore(app);
+app.use(parser());
+app.listen(3000);
