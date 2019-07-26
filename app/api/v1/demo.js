@@ -1,5 +1,7 @@
 const Router = require('koa-router');
 const router = new Router();
+const { paramsError } = require('../../../core//http-exception');
+const { PositiveIntegerValidator } = require('../../validators/validator');
 router.post('/demo/:id', (ctx, next) => {
   /**
    * ctx.param //获取:id
@@ -11,6 +13,8 @@ router.post('/demo/:id', (ctx, next) => {
   const query = ctx.request.query;
   const header = ctx.request.header;
   const body = ctx.request.body;
+  const v = new PositiveIntegerValidator().validate(ctx);
+
   ctx.body = {
     path,
     query,
