@@ -1,3 +1,12 @@
 module.exports={
-  environment:'dev'
+  // 环境区分
+  environment:'dev',
+  // 数据库配置
+  database:{
+    dbName:'demo',
+    host:'localhost',
+    port:3306,
+    user:'root',
+    password:'123456789qq'
+  }
 }

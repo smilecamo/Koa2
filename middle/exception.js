@@ -3,11 +3,13 @@ const throwError = async (ctx, next) => {
   try {
     await next();
   } catch (error) {
+    const isHttpException = error instanceof HttpException;
+    const isDev = global.config.environment;
     // 已知异常
-    if (global.config.environment === 'dev') {
-      throw error
+    if (isDev && !isHttpException) {
+      throw error;
     }
-    if (error instanceof HttpException) {
+    if (isHttpException) {
       ctx.body = {
         msg: error.msg,
         error_code: error.errorCode,

@@ -5,6 +5,7 @@ const bodyParser = require('koa-bodyparser');
 const InitManager = require('./core/init');
 // 全局异常处理
 const throwError = require('./middle/exception');
+// 数据库
 const app = new Koa();
 app.use(throwError);
 app.use(bodyParser());
