@@ -4,6 +4,7 @@ class InitManager {
   static InitCore(app) {
     // 入口方法
     InitManager.app = app;
+    InitManager.error();
     InitManager.initLoadRouters();
     InitManager.loadConfig();
   }
@@ -21,10 +22,14 @@ class InitManager {
     }
   }
   //
-  static loadConfig(path="") {
+  static loadConfig(path = '') {
     const configPath = path || process.cwd() + '/config/config.js';
     const config = require(configPath);
     global.config = config;
+  }
+  static error() {
+    const errors = require('./http-exception');
+    global.errs = errors;
   }
 }
 
